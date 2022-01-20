@@ -45,6 +45,6 @@ export const createUserProfile=async(userAuth,additionalData)=>{
 
   const provider=new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({promt:'select_account'});
-  export const signInWihGoogle=()=>auth.signInWithPopup(provider);
+  export const signInWithGoogle=()=>auth.signInWithPopup(provider);
   
   export default firebase;
