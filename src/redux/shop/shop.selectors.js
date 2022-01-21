@@ -23,7 +23,7 @@ export const selectCollectionsForPreview=createSelector(
 export const selectCollection=memoize((collectionUrlParam)=>       //collectionUrlParam - string parameter value for each id from shop data
 createSelector(
     [selectCollections],
-    collections=>collections ? collections[collectionUrlParam] : null  // converted shop data from array to object i.e-data normalization to find individual elements
+    collections=>(collections ? collections[collectionUrlParam] : null)  // converted shop data from array to object i.e-data normalization to find individual elements
 
 )
 )
