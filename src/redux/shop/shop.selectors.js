@@ -1,9 +1,6 @@
 import {createSelector} from 'reselect';
 import memoize from 'lodash.memoize';
 
-
-
-
 const selectShop=state=>state.shop
 
 export const selectCollections=createSelector(
@@ -17,7 +14,8 @@ export const selectCollections=createSelector(
 // get the value of our collections object at that key,which will give us an array of our items
 export const selectCollectionsForPreview=createSelector(
     [selectCollections],
-    collections=>Object.keys(collections).map(key=>collections[key])   //converting object of shop data into array to map in collection overview
+    (collections)=>
+    collections ? Object.keys(collections).map((key)=>collections[key]) : []  //converting object of shop data into array to map in collection overview
 )
 
  
@@ -25,7 +23,7 @@ export const selectCollectionsForPreview=createSelector(
 export const selectCollection=memoize((collectionUrlParam)=>       //collectionUrlParam - string parameter value for each id from shop data
 createSelector(
     [selectCollections],
-    collections=>collections[collectionUrlParam]   // converted shop data from array to object i.e-data normalization to find individual elements
+    collections=>collections ? collections[collectionUrlParam] : null  // converted shop data from array to object i.e-data normalization to find individual elements
 
 )
 )

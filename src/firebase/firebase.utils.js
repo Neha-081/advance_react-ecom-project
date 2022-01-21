@@ -52,15 +52,12 @@ export const createUserProfile=async(userAuth,additionalData)=>{
 export const addCollectionAndDocuments=async(collectionKey,obejctsToAdd)=>{
   const collectionRef=firestore.collection(collectionKey);   
 // console.log(collectionRef);
-
-  const batch=firestore.batch();  //add set object above
+  const batch=firestore.batch();    //add set object above
   obejctsToAdd.forEach(obj=>{
-    const newDocRef=collectionRef.doc(obj.title)    //new document reference in this collection and randomly generate an ID.
+    const newDocRef=collectionRef.doc()    //new document reference in this collection and randomly generate an ID.
    batch.set(newDocRef,obj)
   })
-
-  return await batch.commit()   //returns a promise
-
+return await batch.commit()      //returns a promise
 }
 
 //shop data
@@ -69,14 +66,18 @@ export const convertCollectionsSnapshotToMap=(collections)=>{
     const {title,items}=doc.data();
 
     return {
-    routeName:encodeURI(title.toLowerCase()),
-    id:doc.id,
-    title,
-    items
+      routeName:encodeURI(title.toLowerCase()),
+      id:doc.id,
+      title,
+      items
     }
   })
-  console.log(transformedCollection);
+  return transformedCollection.reduce((accumulator,collection)=>{
+    accumulator[collection.title.toLowerCase()]=collection;
+  return accumulator;
+  },{})
 }
+
 
   export const auth=firebase.auth();
   export const firestore=firebase.firestore();
