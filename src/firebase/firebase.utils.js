@@ -11,6 +11,7 @@ const config={
     appId: "1:952293346794:web:d5b0e84588ab4f96703693",
     measurementId: "G-4VQHJR7WJE"
   };
+  firebase.initializeApp(config);
 
 //Using the user reference, we would then call to get the snapshot object, because,
 // even if we did not have an actual user object in the database, Firebase will always give us back a
@@ -48,13 +49,19 @@ export const createUserProfile=async(userAuth,additionalData)=>{
   return userRef;
 }
 
-export const addCollectionAndDocuments=(collectionKey,obejctsToAdd)=>{
-  const collectionRef=firestore.collection(collectionKey);
-  console.log(collectionRef);
+export const addCollectionAndDocuments=async(collectionKey,obejctsToAdd)=>{
+  const collectionRef=firestore.collection(collectionKey);   
+// console.log(collectionRef);
+
+  const batch=firestore.batch();  //add set object above
+  obejctsToAdd.forEach(obj=>{
+    const newDocRef=collectionRef.doc(obj.title)    //new document reference in this collection and randomly generate an ID.
+   batch.set(newDocRef,obj)
+  })
+
+  return await batch.commit()   //returns a promise
 
 }
-
-  firebase.initializeApp(config);
 
   export const auth=firebase.auth();
   export const firestore=firebase.firestore();
