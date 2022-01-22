@@ -28,6 +28,10 @@ createSelector(
 )
 )
 
+export const selectIsCollectionsFetching=createSelector(
+    [selectShop],
+    shop=>shop.isFetching
+)
 
 
 
