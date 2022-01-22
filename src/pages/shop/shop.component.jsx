@@ -24,11 +24,13 @@ const collectionRef=firestore.collection('collections');
 //whenever the collection ref updates or whenever this code gets run for the first time, 
 // this collection ref will send us the snapshot representing the code of our collections
 // objects array at the time when this code renders
-this.unsubscribeFromSnapshot=collectionRef.onSnapshot(async snapshot=>{
- const collectionsMap= convertCollectionsSnapshotToMap(snapshot)
- updateCollections(collectionsMap)
- this.setState({loading:false})
-})
+
+
+collectionRef.get().then(snapshot=>{
+    const collectionsMap= convertCollectionsSnapshotToMap(snapshot)
+    updateCollections(collectionsMap)
+    this.setState({loading:false})
+   })
 }
 
     render(){
