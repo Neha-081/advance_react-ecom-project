@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 import rootReducer from './root-reducer';
 
 //id redux-thunk middleware is enabled, any time you attempt to dispatch a function instead of an object, the middleware will call that function with dispatch method itself as the first arguement
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk';   //not an object but a function
 
 const middlewares=[thunk]
 

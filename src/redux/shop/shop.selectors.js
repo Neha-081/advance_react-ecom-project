@@ -33,6 +33,13 @@ export const selectIsCollectionsFetching=createSelector(
     shop=>shop.isFetching
 )
 
+export const selectIsCollectionLoaded=createSelector(
+    [selectShop],
+    shop=>!!shop.collections  //to determine truthy or falsy value
+//it will be false if there is no collection
+    )
+
+
 
 
 //By wrapping this function is memoize, we're saying that whenever this function gets
