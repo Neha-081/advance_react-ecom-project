@@ -18,20 +18,20 @@ unsubscribeFromAuth=null;
   componentDidMount(){
 const {setCurrentUser}=this.props
 
-    this.unsubscribeFromAuth= auth.onAuthStateChanged(async userAuth=>{
-   if(userAuth){
-    const userRef=await createUserProfile(userAuth)  //check if our database has updated at that reference with any new data.
+  //   this.unsubscribeFromAuth= auth.onAuthStateChanged(async userAuth=>{
+  //  if(userAuth){
+  //   const userRef=await createUserProfile(userAuth)  //check if our database has updated at that reference with any new data.
     
 
-    userRef.onSnapshot(snapShot=>{   //set user to currentUser
-  setCurrentUser({
-       id:snapShot.id,
-       ...snapShot.data()
-     })
-   })
-  }
-    setCurrentUser(userAuth);   //currentuser to null
-  })
+  //   userRef.onSnapshot(snapShot=>{   //set user to currentUser
+  // setCurrentUser({
+  //      id:snapShot.id,
+  //      ...snapShot.data()
+  //    })
+  //  })
+  // }
+  //   setCurrentUser(userAuth);   //currentuser to null
+  // })
   }
 
   componentWillUnmount(){
