@@ -1,8 +1,9 @@
 //Reducers fire first, then sagas receive the action. From there, sagas can fire off new actions which in turn hit the reducers and other sagas as well!
 //sagas  wants to run them all together in a way that does not block the execution.
 
-//listens to every action of the specific type
-import {takeEvery,call,put} from 'redux-saga/effects';
+//takeEvery-listens to every action of the specific type
+//takeLatest-if fires multiple times then the last one will get most up to date data
+import {takeLatest,call,put} from 'redux-saga/effects';
 import ShopActionTypes from './shop.types';
 import { firestore,convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 import { fetchCollectionsSuccess,
@@ -31,7 +32,7 @@ try{
 }
 
 export function* fetchCollectionStart(){
-    yield takeEvery(
+    yield takeLatest(
         ShopActionTypes.FETCH_COLLECTIONS_START,
         fetchCollectionsAsync
         )
