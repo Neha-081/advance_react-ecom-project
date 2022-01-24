@@ -1,0 +1,19 @@
+//shop data with saga
+*components dispatch FETCH_COLLECTION_START action in shop.actions.
+*Which goes to saga middleware in store.js
+*which call fetchCollectionStart() in shop.saga.js having action type FETCH_COLLECTION_START
+*fetchCollectionStart() call fetchCollectionAsync() which get stuff from firestore 
+* from fetchCollectionAsync() it dispatch FETCH_COLLECTION_SUCCESS or FETCH_COLLECTION_FAILURE actions
+which go to saga middleware
+*if no actions are further listening then  saga middleware pass actions to shop reducer
+*redux doesn't care about any sagas,it continues with its flows
+
+**saga middleware is just in between the actions dispatch and to the reducers,
+it just perform actions which are asynchronus in nature.
+
+//signin and signup with saga
+*components dispatch signin action
+*saga middleware call two sagas i.e GOOGLE_SIGN_IN_START which further call SignInWithGoogel() which has code to signin with google
+ and EMAIL_SIGN_IN_START which further call SignInWithEmailAndPassword() which has code to signin with email and password
+ from both the it dispatch FETCH_COLLECTION_SUCCESS or FETCH_COLLECTION_FAILURE actions which go to saga middleware
+*if no actions are further listening then  saga middleware pass actions to shop reducer
