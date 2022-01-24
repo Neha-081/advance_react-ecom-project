@@ -10,11 +10,18 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import CheckoutPage from './pages/checkout/checkout.component';
 import {selectCurrentUser} from './redux/user/user.selectors'
 import { checkUserSession } from './redux/user/user.actions';
+import { useSelector,useDispatch } from 'react-redux';        //replace higher order component-connect nd replace mapstatetoprops,mapdispatchtoprops
 
-const App=({checkUserSession,currentUser})=> {
-useEffect(()=>{
-  checkUserSession()
-},[checkUserSession])
+//useDispatch or dispatch-take the action object that we want to dispatch or redux store.And it just dispatches it programmatically.
+
+const App=()=> {
+
+const currentUser=useSelector(selectCurrentUser);
+const dispatch=useDispatch()
+
+  useEffect(()=>{
+ dispatch( checkUserSession())
+},[dispatch])
 
 
 
@@ -42,17 +49,8 @@ useEffect(()=>{
 
 
 
-const mapStateToProps=createStructuredSelector({     //redirect to homepage after signin
-  currentUser:selectCurrentUser,
-})
 
-const mapDispatchToProps=dispatch=>({
-  checkUserSession:()=>dispatch(checkUserSession())
-})
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-  )(App);
+export default App;
 
 
