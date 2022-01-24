@@ -3,11 +3,12 @@
 
 //takeEvery-listens to every action of the specific type
 //takeLatest-if fires multiple times then the last one will get most up to date data
-import {takeLatest,call,put} from 'redux-saga/effects';
+import {takeLatest,call,put,all} from 'redux-saga/effects';
 import ShopActionTypes from './shop.types';
 import { firestore,convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 import { fetchCollectionsSuccess,
-fetchCollectionsFailure
+fetchCollectionsFailure,
+fetchCollectionsStart
 } from './shop.actions';
 
 
@@ -36,6 +37,12 @@ export function* fetchCollectionStart(){
         ShopActionTypes.FETCH_COLLECTIONS_START,
         fetchCollectionsAsync
         )
+}
+
+export function* shopSagas(){
+  yield all([
+    call(fetchCollectionStart)
+  ])
 }
 
 //FLOW-> FETCH_COLLECTIONS_START action came in our saga that fetchCollectionStart was listening for this action
