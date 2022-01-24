@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import CollectionPageContainer from '../collection/collection.conatiner';
 import { connect } from 'react-redux';
@@ -8,16 +8,14 @@ import CollectionsOverviewConatiner from '../../components/collections-overview/
 
 
 
-class ShopPage extends React.Component{
-componentDidMount(){
-    const {fetchCollectionsStart}=this.props
-    fetchCollectionsStart()
+const ShopPage=({match,fetchCollectionsStart})=>{
+
+    useEffect(()=>{
+        fetchCollectionsStart()
+    },[fetchCollectionsStart])
 
 
-}
 
-    render(){
-        const {match}=this.props
         return (
             <div className='shop-page'>
 {/* render is a method that takes a function where the parameters and the function are pretty much just the parameters that the component will receive, which in our case are going to be the match location */}
@@ -32,7 +30,7 @@ component={CollectionsOverviewConatiner}
         )
    
     }
-}
+
 
 
     

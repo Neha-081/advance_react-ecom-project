@@ -8,7 +8,6 @@ import ShopActionTypes from './shop.types';
 import { firestore,convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 import { fetchCollectionsSuccess,
 fetchCollectionsFailure,
-fetchCollectionsStart
 } from './shop.actions';
 
 
