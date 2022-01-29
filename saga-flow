@@ -16,4 +16,4 @@ it just perform actions which are asynchronus in nature.
 *saga middleware call two sagas i.e GOOGLE_SIGN_IN_START which further call SignInWithGoogel() which has code to signin with google
  and EMAIL_SIGN_IN_START which further call SignInWithEmailAndPassword() which has code to signin with email and password
  from both the it dispatch FETCH_COLLECTION_SUCCESS or FETCH_COLLECTION_FAILURE actions which go to saga middleware
-*if no actions are further listening then  saga middleware pass actions to shop reducer.
+*if no actions are further listening then  saga middleware pass actions to shop reducer lastly.
