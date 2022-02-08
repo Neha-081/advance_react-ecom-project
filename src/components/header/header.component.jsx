@@ -3,7 +3,7 @@ import {ReactComponent as Logo} from '../../assets/crown.svg'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
-import { HeaderContainer,LogoConatiner,OptionContainer,OptionLink } from './header.styles';
+import { HeaderContainer,LogoContainer,OptionContainer,OptionLink } from './header.styles';
 import { signOutStart } from '../../redux/user/user.actions';
 import { useSelector,useDispatch } from 'react-redux';
 
@@ -16,9 +16,9 @@ const Header=()=>{
 
   return(
     <HeaderContainer>
-  <LogoConatiner to='/' >
+  <LogoContainer to='/' >
   <Logo className='logo'/>
-  </LogoConatiner>
+  </LogoContainer>
   <OptionContainer>
       <OptionLink  to='/shop'>
           SHOP
