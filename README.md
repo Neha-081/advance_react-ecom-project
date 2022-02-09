@@ -1,6 +1,8 @@
 # Heart Clothing | E-commerce react app  :dress: :jeans:
 Simple ecommerce react-redux js app with firebase and redux-saga.
 
+## LIVE DEMO - https://react-redux-ecom-neha.netlify.app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
