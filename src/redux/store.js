@@ -4,7 +4,6 @@ import {persistStore} from 'redux-persist'
 import logger from 'redux-logger';
 import rootReducer from './root-reducer';
 import createSagaMiddleware from 'redux-saga'
-import { fetchCollectionStart } from './shop/shop.sagas';
 import rootSaga from './root-saga';
 
 const sagaMiddleware=createSagaMiddleware();
@@ -21,8 +20,8 @@ sagaMiddleware.run(rootSaga)
 //create our new provider that's wrapping our application
 export const persistor=persistStore(store)   //creating this new persisted version of our store.Right, using this persistent object.
 
-
-export default { store, persistStore };
+const storeState = { store, persistStore };
+export default storeState;
 
 
 
